@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-8 offset-md-2 ">
+    <div class="create-user-container">
+     
+      <a [routerLink]="['/']">&laquo;Back to dashboard</a>
+      <div class="alert alert-danger" *ngIf="!createUserForm.valid && createUserForm.touched">
+        Please provide valid user details
+      </div>
+      <mat-card>
+      <mat-card-title>Create a new user</mat-card-title>
+        <form class='add-user-form' (ngSubmit)='onSubmit()' #createUserForm='ngForm'>
+          <mat-form-field class='control-full-width'>
+            <input 
+                  matInput 
+                  placeholder="Name"
+                  ngModel
+                  name='name'
+                  required
+                  #nameInput
+                  >
+          </mat-form-field>
+          <mat-form-field class='control-full-width'>
+            <input 
+                  matInput 
+                  placeholder="Email"
+                  ngModel
+                  name='email'
+                  required
+                  #emailInput
+                  >
+          </mat-form-field>
+          <mat-form-field class='control-full-width' hintLabel="Max 10 characters">
+              <input 
+                    matInput 
+                    #input 
+                    maxlength="10" 
+                    placeholder="Phone Number"
+                    ngModel
+                    name='phone'
+                    required
+                    #phoneInput
+                    >
+              <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+            </mat-form-field>
+          <div class="addUser-button-row mt-3">
+            <button type="submit" mat-raised-button color="primary">Create</button>
+          </div>
+        </form>
+        <app-spinner *ngIf='showpinner'></app-spinner>
+      </mat-card>
+    </div>
+  </div>
+</div>

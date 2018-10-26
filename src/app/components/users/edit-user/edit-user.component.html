@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-8 offset-md-2 ">
+    <div class="create-user-container">
+      <a [routerLink]="['/']">&laquo;Back to dashboard</a>
+      <div class="alert alert-danger" *ngIf="!editUserForm.valid && editUserForm.touched">
+        Please provide valid user details
+      </div>
+      <mat-card>
+        <mat-card-title>Edit: {{ user?.name }}</mat-card-title>
+        <form class='add-user-form' (ngSubmit)='onUpdate()' #editUserForm='ngForm'>
+          <mat-form-field class='control-full-width'>
+            <input matInput placeholder="Name" ngModel name='name' required #nameInput value="{{ user?.name }}">
+          </mat-form-field>
+          <mat-form-field class='control-full-width'>
+          <input matInput placeholder="Email" ngModel name='email' required #emailInput value="{{ user?.email }}">
+          </mat-form-field>
+          <mat-form-field class='control-full-width' hintLabel="Max 10 characters">
+            <input matInput #input maxlength="10" placeholder="Phone Number" ngModel name='phone' required #phoneInput [value]="user?.phone">
+            <mat-hint align="end">{{input.value?.length || l0}}/10</mat-hint>
+          </mat-form-field>
+          <div class="addUser-button-row mt-3">
+            <button type="submit" mat-raised-button color="primary">Update</button>
+          </div>
+        </form>
+        <app-spinner *ngIf='showpinner'></app-spinner>
+      </mat-card>
+    </div>
+  </div>
+</div>
