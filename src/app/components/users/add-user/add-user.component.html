@@ -3,7 +3,7 @@
     <div class="create-user-container">
      
       <a [routerLink]="['/']">&laquo;Back to dashboard</a>
-      <div class="alert alert-danger" *ngIf="!createUserForm.valid && createUserForm.touched">
+      <div class="alert alert-danger" *ngIf="!createUserForm.valid && createUserForm.touched && isSubmit">
         Please provide valid user details
       </div>
       <mat-card>
@@ -48,6 +48,9 @@
         </form>
         <app-spinner *ngIf='showpinner'></app-spinner>
       </mat-card>
+    </div>
+    <div class="alert alert-danger error-msg mt-3" *ngIf="serverError?.length>0">
+      <p>{{ serverError }}</p>
     </div>
   </div>
 </div>

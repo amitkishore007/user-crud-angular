@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-md-12">
   <app-spinner *ngIf='showpinner'></app-spinner>
-    <div class="response" *ngIf='users?.length>0; else noUser'>
+    <div class="response" >
         <h3> Users </h3>
         <div class="example-button-row">
           <a [routerLink]='["users","create"]' mat-stroked-button color="primary">Create User</a>
           <a [routerLink]='["posts","create"]' mat-stroked-button color="accent">Create Post</a>
         </div>
-      <table mat-table [dataSource]="users" class="mat-elevation-z8">
+    <table mat-table [dataSource]="users" class="mat-elevation-z8" *ngIf='users?.length'>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -48,10 +48,14 @@
 
       </table>
     </div>
-    <ng-template #noUser>
-      <div class="alert alert-info">
-        <p>There is no user in the system</p>
-      </div>
-    </ng-template>
+
+    <div class="alert alert-danger" *ngIf="noResponse">
+      No Response from server
+    </div>
+
+    <div class="alert alert-info" *ngIf="noUser">
+      There is no user in the system
+    </div>
+
   </div>
 </div>
